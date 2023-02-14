@@ -1,0 +1,6 @@
+<p>{{ products.length }} products</p>
+<app-product-item
+  *ngFor="let product of products; trackBy: productTrackBy"
+  [product]="product"
+>
+</app-product-item>

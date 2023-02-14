@@ -1,5 +1,5 @@
-<ng-container *ngIf="selectedProduct$ | async as product">
+<div (click)="onSelected(product.id)" [routerLink]="['/product', product.id]">
   <p>{{ product.code }}</p>
   <p>Quantity: {{ product.quantity }}</p>
   <p>Location: {{ product.floor }} / {{ product.section }}</p>
-</ng-container>
+</div>
