@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ProductService } from 'src/app/shared/data-access/product.service';
 import { Product } from 'src/app/shared/interfaces/product';
 
 @Component({
@@ -12,12 +11,7 @@ import { Product } from 'src/app/shared/interfaces/product';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductItemComponent {
-  @Input()
-  public product!: Product;
+  @Input() public product: Product;
 
-  constructor(private productService: ProductService) {}
-
-  public onSelected(productId: number): void {
-    this.productService.selectedProductChanged(productId);
-  }
+  constructor() {}
 }

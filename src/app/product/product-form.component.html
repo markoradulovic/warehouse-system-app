@@ -1,5 +1,28 @@
-<ng-container *ngIf="selectedProduct$ | async as product">
-  <p>{{ product.code }}</p>
-  <p>Quantity: {{ product.quantity }}</p>
-  <p>Location: {{ product.floor }} / {{ product.section }}</p>
-</ng-container>
+<form [formGroup]="productForm">
+  <div>
+    <label for="code">Product Code *</label
+    ><input type="text" id="code" formControlName="productCode" />
+  </div>
+
+  <div>
+    <label for="quantity">Quantity *</label
+    ><input type="number" id="quantity" formControlName="productQuantity" />
+  </div>
+
+  <div>
+    <label for="floor">Floor *</label
+    ><input type="number" id="floor" formControlName="productFloor" />
+  </div>
+
+  <div>
+    <label for="section">Section *</label
+    ><input type="number" id="section" formControlName="productSection" />
+  </div>
+
+  <button [disabled]="productForm.invalid" type="button" (click)="onSave()">
+    Save Product
+  </button>
+  <button *ngIf="!isNewProduct" type="button" (click)="onDelete()">
+    Delete Product
+  </button>
+</form>
