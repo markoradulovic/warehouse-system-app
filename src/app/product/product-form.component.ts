@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductService } from '../shared/data-access/product.service';
 import { Product } from '../shared/interfaces/product';
+import { CodeValidator } from './utils/product-code.validator';
 
 @Component({
   selector: 'app-product-form',
@@ -86,6 +87,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.pattern(/[A-Z]{2,4}\s[0-9]{4,6}/),
         ]),
+        [CodeValidator.checkCodeValidator(this.productService)],
       ],
       productQuantity: [null, Validators.required],
       productFloor: [
@@ -144,7 +146,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     if (this.isNewProduct) {
       this.addProductSubscription = this.productService
         .createProduct(product)
-        .subscribe();
+        .subscribe(() => this.router.navigate(['/home']));
     }
 
     if (!this.isNewProduct) {
