@@ -1,3 +1,33 @@
 <h1>Werhouse system app home</h1>
+
+<form [formGroup]="filtersForm">
+  <p>Filters:</p>
+  <div>
+    <label for="code">Product Code:</label
+    ><input type="search" id="code" formControlName="productCode" />
+  </div>
+
+  <div>
+    <label for="floor">Floors:</label>
+    <select id="floor" formControlName="productFloor">
+      <option value="" selected>All Floors</option>
+      <option *ngFor="let option of dropdownOprions" [value]="option">
+        Floor {{ option }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="section">Section:</label>
+    <select id="section" formControlName="productSection">
+      <option value="" selected>All Sections</option>
+      <option *ngFor="let option of dropdownOprions" [value]="option">
+        Section {{ option }}
+      </option>
+    </select>
+  </div>
+</form>
+
 <app-product-list [products]="products"></app-product-list>
+
 <a [routerLink]="['/product']">Add New Product</a>

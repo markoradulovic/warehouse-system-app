@@ -12,6 +12,7 @@ const routes: Routes = [
       import('./product/product-form.component').then(
         (comp) => comp.ProductFormComponent
       ),
+    data: { isNew: true },
   },
   {
     path: 'product/:id',
@@ -19,6 +20,7 @@ const routes: Routes = [
       import('./product/product-form.component').then(
         (comp) => comp.ProductFormComponent
       ),
+    data: { isNew: false },
   },
   { path: '**', component: PageNotFoundComponent },
 ];

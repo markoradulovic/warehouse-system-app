@@ -5,3 +5,9 @@ export interface Product {
   floor: number;
   section: number;
 }
+
+export interface Filters {
+  productCode?: string;
+  productFloor?: number;
+  productSection?: number;
+}

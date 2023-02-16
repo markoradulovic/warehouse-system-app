@@ -24,8 +24,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   private addProductSubscription: Subscription;
   private deleteProductSubscription: Subscription;
   private updateProductSubscription: Subscription;
+  private routeSubscription: Subscription;
 
-  public isNewProduct = true;
+  public isNewProduct: boolean;
 
   public productForm: FormGroup;
 
@@ -51,16 +52,14 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    if (this.route.snapshot.paramMap.get('id')) this.isNewProduct = false;
-
     this.buildForm();
-
+    this.getRouteData();
     if (!this.isNewProduct) this.populateForm();
   }
 
@@ -74,10 +73,12 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
     if (this.deleteProductSubscription)
       this.deleteProductSubscription.unsubscribe();
+
+    if (this.routeSubscription) this.routeSubscription.unsubscribe();
   }
 
   private buildForm(): void {
-    this.productForm = this.fb.group({
+    this.productForm = this.formBuilder.group({
       productId: [null],
       productCode: [
         null,
@@ -123,6 +124,12 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
         this.section.setValue(product?.section);
       });
+  }
+
+  private getRouteData() {
+    this.routeSubscription = this.route.data.subscribe(
+      (data: any) => (this.isNewProduct = data.isNew)
+    );
   }
 
   public onSave(): void {
