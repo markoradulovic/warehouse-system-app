@@ -64,21 +64,21 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.products = [...products];
 
         if (code) {
-          const productFilteredByCode = products.filter((product: Product) =>
-            product.code.includes(code.toUpperCase())
+          const productFilteredByCode = this.products.filter(
+            (product: Product) => product.code.includes(code.toUpperCase())
           );
           this.products = [...productFilteredByCode];
         }
 
         if (floor) {
-          const productFilteredByFloor = products.filter(
+          const productFilteredByFloor = this.products.filter(
             (product: Product) => product.floor === floor
           );
           this.products = [...productFilteredByFloor];
         }
 
         if (section) {
-          const productFilteredBySection = products.filter(
+          const productFilteredBySection = this.products.filter(
             (product: Product) => product.section === section
           );
           this.products = [...productFilteredBySection];
