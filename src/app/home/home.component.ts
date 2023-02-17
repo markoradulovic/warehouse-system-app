@@ -105,4 +105,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         );
       });
   }
+
+  public onClear() {
+    this.code.setValue('');
+    this.floor.setValue('');
+    this.section.setValue('');
+
+    this.getProducts();
+  }
 }

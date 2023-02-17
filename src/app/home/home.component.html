@@ -1,15 +1,19 @@
-<h1>Werhouse system app home</h1>
+<form [formGroup]="filtersForm" autocomplete="off" class="form">
+  <span class="form-title">Filters</span>
 
-<form [formGroup]="filtersForm">
-  <p>Filters</p>
-  <div>
-    <label for="code">Product Code:</label
-    ><input type="search" id="code" formControlName="productCode" />
+  <div class="form-row">
+    <label for="code" class="form-label">Product Code:</label
+    ><input
+      type="search"
+      id="code"
+      formControlName="productCode"
+      class="form-input"
+    />
   </div>
 
-  <div>
-    <label for="floor">Floors:</label>
-    <select id="floor" formControlName="productFloor">
+  <div class="form-row">
+    <label for="floor" class="form-label">Floors:</label>
+    <select id="floor" formControlName="productFloor" class="form-select">
       <option value="" selected>All Floors</option>
       <option *ngFor="let option of dropdownOprions" [value]="option">
         Floor {{ option }}
@@ -17,17 +21,23 @@
     </select>
   </div>
 
-  <div>
-    <label for="section">Section:</label>
-    <select id="section" formControlName="productSection">
+  <div class="form-row">
+    <label for="section" class="form-label">Section:</label>
+    <select id="section" formControlName="productSection" class="form-select">
       <option value="" selected>All Sections</option>
       <option *ngFor="let option of dropdownOprions" [value]="option">
         Section {{ option }}
       </option>
     </select>
   </div>
+
+  <button class="form-button" type="button" (click)="onClear()">
+    Clear All Filters
+  </button>
 </form>
 
-<app-product-list [products]="products"></app-product-list>
+<div class="product-container">
+  <app-product-list [products]="products"></app-product-list>
 
-<a [routerLink]="['/product']">Add New Product</a>
+  <a [routerLink]="['/product']">Add New Product</a>
+</div>
