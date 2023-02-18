@@ -1,6 +1,9 @@
-<p>{{ products.length }} products</p>
-<app-product-item
-  *ngFor="let product of products; trackBy: productTrackBy"
-  [product]="product"
->
-</app-product-item>
+<div class="werhouse-product">
+  <span class="product-title">{{ products.length }} products found</span>
+
+  <app-product-item
+    *ngFor="let product of products; trackBy: productTrackBy"
+    [product]="product"
+  >
+  </app-product-item>
+</div>

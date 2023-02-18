@@ -1,0 +1,22 @@
+@import "../../../shared/ui/colors.scss";
+@import "../../../shared/ui/links.scss";
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 0.1rem solid $werhouse-gray;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  width: 15rem;
+
+  .card-row {
+    font-size: $werhouse-black;
+    font-size: 1.1rem;
+
+    .card-label {
+      color: $werhouse-green;
+      font-size: 1.2rem;
+    }
+  }
+}

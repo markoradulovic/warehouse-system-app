@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ProductService } from '../shared/data-access/product.service';
 import { Product } from '../shared/interfaces/product';
 import { ProductsValidator } from './utils/products.validator';
@@ -21,7 +21,7 @@ import { ProductsValidator } from './utils/products.validator';
   styleUrls: ['./product-form.component.scss'],
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
-  private subscriptions: Subscription[] = [];
+  private destroy$ = new Subject<void>();
 
   public isNewProduct: boolean;
 
@@ -57,14 +57,13 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.buildForm();
     this.getRouteData();
+
     if (!this.isNewProduct) this.populateForm();
   }
 
   ngOnDestroy(): void {
-    if (this.subscriptions.length > 0)
-      this.subscriptions.forEach(
-        (subscription: Subscription) => subscription.unsubscribe
-      );
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private buildForm(): void {
@@ -102,7 +101,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       },
       {
         validators: null,
-        asyncValidators: ProductsValidator.checkLocationValidator(
+        asyncValidators: ProductsValidator.emptyLocationValidator(
           this.productService
         ),
       }
@@ -112,22 +111,25 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   private populateForm(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
-    this.subscriptions.push(
-      this.productService.getProduct(+id).subscribe((product: Product) => {
+    this.productService
+      .getProduct(+id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((product: Product) => {
         this.id.setValue(product?.id);
         this.code.setValue(product?.code);
         this.code.disable();
         this.quantity.setValue(product?.quantity);
         this.floor.setValue(product?.floor);
         this.section.setValue(product?.section);
-      })
-    );
+        this.productForm.clearAsyncValidators();
+        this.productForm.updateValueAndValidity();
+      });
   }
 
-  private getRouteData() {
-    this.subscriptions.push(
-      this.route.data.subscribe((data: any) => (this.isNewProduct = data.isNew))
-    );
+  private getRouteData(): void {
+    this.route.data
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => (this.isNewProduct = data.isNew));
   }
 
   public onSave(): void {
@@ -140,27 +142,24 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     };
 
     if (this.isNewProduct) {
-      this.subscriptions.push(
-        this.productService
-          .createProduct(product)
-          .subscribe(() => this.router.navigate(['/home']))
-      );
+      this.productService
+        .createProduct(product)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => this.router.navigate(['/home']));
     }
 
     if (!this.isNewProduct) {
-      this.subscriptions.push(
-        this.productService
-          .updateProduct(product)
-          .subscribe(() => this.router.navigate(['/home']))
-      );
+      this.productService
+        .updateProduct(product)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => this.router.navigate(['/home']));
     }
   }
 
   public onDelete(): void {
-    this.subscriptions.push(
-      this.productService
-        .deleteProduct(this.id.value)
-        .subscribe(() => this.router.navigate(['/home']))
-    );
+    this.productService
+      .deleteProduct(this.id.value)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => this.router.navigate(['/home']));
   }
 }

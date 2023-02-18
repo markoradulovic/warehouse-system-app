@@ -1,0 +1,16 @@
+@import "./colors.scss";
+
+.werhouse-link {
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: $werhouse-red;
+
+  &:hover {
+    cursor: pointer;
+    color: $werhouse-green;
+  }
+
+  &:visited {
+    color: $werhouse-red;
+  }
+}

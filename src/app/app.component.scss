@@ -1,0 +1,40 @@
+@import "./shared/ui/colors.scss";
+
+.werhouse {
+  &-header {
+    background-color: $werhouse-white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    border-bottom: 0.1rem solid $werhouse-gray;
+
+    @media screen and (max-width: 600px) {
+      gap: 0;
+      justify-content: space-between;
+    }
+  }
+
+  &-title {
+    font-size: 2rem;
+    color: $werhouse-red;
+    margin-right: 0.5rem;
+  }
+
+  // &-main {
+  //   @media screen and (max-width: 600px) {
+  //     height: 100%;
+  //   }
+  // }
+
+  &-footer {
+    background-color: $werhouse-red;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    .copy {
+      color: $werhouse-white;
+      font-size: 1.5rem;
+    }
+  }
+}

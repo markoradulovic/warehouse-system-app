@@ -1,43 +1,54 @@
-<form [formGroup]="filtersForm" autocomplete="off" class="form">
-  <span class="form-title">Filters</span>
+<div class="werhouse-home">
+  <form [formGroup]="filtersForm" autocomplete="off" class="form">
+    <span class="form-title">Filter products</span>
 
-  <div class="form-row">
-    <label for="code" class="form-label">Product Code:</label
-    ><input
-      type="search"
-      id="code"
-      formControlName="productCode"
-      class="form-input"
-    />
+    <div class="form-row">
+      <label for="code" class="form-label">Code</label
+      ><input
+        type="search"
+        id="code"
+        placeholder="Search products by code"
+        formControlName="productCode"
+        class="form-input"
+      />
+    </div>
+
+    <div class="form-row">
+      <label for="floor" class="form-label">Floor</label>
+      <select id="floor" formControlName="productFloor" class="form-select">
+        <option class="form-option" value="" selected>All Floors</option>
+        <option
+          class="form-option"
+          *ngFor="let option of dropdownOprions"
+          [value]="option"
+        >
+          Floor {{ option }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label for="section" class="form-label">Section</label>
+      <select id="section" formControlName="productSection" class="form-select">
+        <option class="form-option" value="" selected>All Sections</option>
+        <option
+          class="form-option"
+          *ngFor="let option of dropdownOprions"
+          [value]="option"
+        >
+          Section {{ option }}
+        </option>
+      </select>
+    </div>
+
+    <button class="form-button" type="button" (click)="onClear()">
+      Clear All Filters
+    </button>
+  </form>
+
+  <div class="werhouse-products">
+    <app-product-list [products]="products"></app-product-list>
+
+    <a class="werhouse-link" [routerLink]="['/product']">Add New Product</a>
   </div>
-
-  <div class="form-row">
-    <label for="floor" class="form-label">Floors:</label>
-    <select id="floor" formControlName="productFloor" class="form-select">
-      <option value="" selected>All Floors</option>
-      <option *ngFor="let option of dropdownOprions" [value]="option">
-        Floor {{ option }}
-      </option>
-    </select>
-  </div>
-
-  <div class="form-row">
-    <label for="section" class="form-label">Section:</label>
-    <select id="section" formControlName="productSection" class="form-select">
-      <option value="" selected>All Sections</option>
-      <option *ngFor="let option of dropdownOprions" [value]="option">
-        Section {{ option }}
-      </option>
-    </select>
-  </div>
-
-  <button class="form-button" type="button" (click)="onClear()">
-    Clear All Filters
-  </button>
-</form>
-
-<div class="product-container">
-  <app-product-list [products]="products"></app-product-list>
-
-  <a [routerLink]="['/product']">Add New Product</a>
 </div>

@@ -1,5 +1,16 @@
-<div [routerLink]="['/product', product.id]">
-  <p>{{ product.code }}</p>
-  <p>Quantity: {{ product.quantity }}</p>
-  <p>Location: {{ product.floor }} / {{ product.section }}</p>
+<div class="product-card">
+  <span class="card-row"
+    ><span class="card-label">Code: </span>{{ product.code }}</span
+  >
+  <span class="card-row"
+    ><span class="card-label">Quantity: </span>{{ product.quantity }}</span
+  >
+  <span class="card-row"
+    ><span class="card-label">Location: </span>{{ product.floor }} /
+    {{ product.section }}</span
+  >
+
+  <a class="werhouse-link" [routerLink]="['/product', product.id]"
+    >Edit Product</a
+  >
 </div>

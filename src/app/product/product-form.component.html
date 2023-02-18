@@ -19,7 +19,7 @@
       }"
     />
 
-    <span *ngIf="(code.touched || code.dirty) && !code.valid">
+    <span class="invalid" *ngIf="(code.touched || code.dirty) && !code.valid">
       <span class="invalid-feedback" *ngIf="code.hasError('required')">
         Unique product code is required.
       </span>
@@ -48,7 +48,10 @@
       }"
     />
 
-    <span *ngIf="(quantity.touched || quantity.dirty) && !quantity.valid">
+    <span
+      class="invalid"
+      *ngIf="(quantity.touched || quantity.dirty) && !quantity.valid"
+    >
       <span class="invalid-feedback" *ngIf="quantity.hasError('required')">
         Product quantity is required.
       </span>
@@ -73,7 +76,10 @@
       }"
     />
 
-    <span *ngIf="(floor.touched || floor.dirty) && !floor.valid">
+    <span
+      class="invalid"
+      *ngIf="(floor.touched || floor.dirty) && !floor.valid"
+    >
       <span class="invalid-feedback" *ngIf="floor.hasError('required')">
         Floor is required.
       </span>
@@ -102,7 +108,10 @@
       }"
     />
 
-    <span *ngIf="(section.touched || section.dirty) && !section.valid">
+    <span
+      class="invalid"
+      *ngIf="(section.touched || section.dirty) && !section.valid"
+    >
       <span class="invalid-feedback" *ngIf="section.hasError('required')">
         Section is required.
       </span>
@@ -118,6 +127,7 @@
   </div>
 
   <span
+    class="invalid"
     *ngIf="(productForm.touched || productForm.dirty) && !productForm.valid"
   >
     <span

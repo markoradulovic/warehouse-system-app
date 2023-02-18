@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { ProductService } from '../shared/data-access/product.service';
 import { Filters, Product } from '../shared/interfaces/product';
 import { ProductListComponent } from './ui/product-list/product-list.component';
@@ -20,8 +20,7 @@ import { ProductListComponent } from './ui/product-list/product-list.component';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private productsSubscription: Subscription;
-  private filtersSubscription: Subscription;
+  private destroy$ = new Subject<void>();
 
   public products: Product[] = [];
   public dropdownOprions = [1, 2, 3];
@@ -52,14 +51,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.productsSubscription) this.productsSubscription.unsubscribe();
-
-    if (this.filtersSubscription) this.filtersSubscription.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private getProducts(code?: string, floor?: number, section?: number): void {
-    this.productsSubscription = this.productService
+    this.productService
       .getProducts()
+      .pipe(takeUntil(this.destroy$))
       .subscribe((products: Product[]) => {
         this.products = [...products];
 
@@ -95,8 +94,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private filterProducts(): void {
-    this.filtersSubscription = this.filtersForm.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
+    this.filtersForm.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe((filters: Filters) => {
         this.getProducts(
           filters?.productCode,
@@ -106,7 +105,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
   }
 
-  public onClear() {
+  public onClear(): void {
     this.code.setValue('');
     this.floor.setValue('');
     this.section.setValue('');

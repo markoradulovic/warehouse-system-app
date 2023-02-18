@@ -12,6 +12,4 @@ import { Product } from 'src/app/shared/interfaces/product';
 })
 export class ProductItemComponent {
   @Input() public product: Product;
-
-  constructor() {}
 }

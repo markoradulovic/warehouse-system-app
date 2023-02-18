@@ -1,0 +1,90 @@
+@import "./colors.scss";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  margin: 1rem;
+
+  &-title {
+    color: $werhouse-black;
+    font-size: 1.3rem;
+  }
+
+  &-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5%;
+  }
+
+  &-label {
+    font-size: 1.1rem;
+    color: $werhouse-gray;
+    padding: 0.25rem;
+    max-width: 20rem;
+  }
+
+  &-input {
+    color: $werhouse-gray;
+    font-size: 1.1rem;
+    border: 0.05rem solid $werhouse-gray;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    max-width: 20rem;
+  }
+
+  &-select {
+    color: $werhouse-gray;
+    font-size: 1.1rem;
+    border: 0.05rem solid $werhouse-gray;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+  }
+
+  &-option {
+    color: $werhouse-gray;
+  }
+
+  &-button {
+    color: $werhouse-white;
+    background-color: $werhouse-green;
+    font-size: 1.2rem;
+    border: 0.05rem solid $werhouse-green;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:disabled {
+      background-color: $werhouse-gray;
+      border: 0.05rem solid $werhouse-gray;
+
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+
+  &-footer {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .is-invalid {
+    border: 0.1rem solid $werhouse-red;
+  }
+
+  .invalid {
+    margin-top: 0.5rem;
+
+    &-feedback {
+      font-size: 1.1rem;
+      color: $werhouse-red;
+    }
+  }
+}

@@ -4,7 +4,9 @@ import { ProductService } from 'src/app/shared/data-access/product.service';
 import { Product } from 'src/app/shared/interfaces/product';
 
 export class ProductsValidator {
-  static uniqueCodeValidator(productService: ProductService): AsyncValidatorFn {
+  public static uniqueCodeValidator(
+    productService: ProductService
+  ): AsyncValidatorFn {
     return (
       control: AbstractControl
     ): Observable<{ [key: string]: boolean } | null> => {
@@ -20,7 +22,7 @@ export class ProductsValidator {
     };
   }
 
-  static checkLocationValidator(
+  public static emptyLocationValidator(
     productService: ProductService
   ): AsyncValidatorFn {
     return (
