@@ -121,8 +121,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         this.quantity.setValue(product?.quantity);
         this.floor.setValue(product?.floor);
         this.section.setValue(product?.section);
-        this.productForm.clearAsyncValidators();
-        this.productForm.updateValueAndValidity();
       });
   }
 

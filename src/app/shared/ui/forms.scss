@@ -30,17 +30,19 @@
     color: $werhouse-gray;
     font-size: 1.1rem;
     border: 0.05rem solid $werhouse-gray;
-    border-radius: 0.5rem;
+    border-radius: 1.5rem;
     padding: 0.25rem;
     max-width: 20rem;
+    outline: transparent;
   }
 
   &-select {
     color: $werhouse-gray;
     font-size: 1.1rem;
     border: 0.05rem solid $werhouse-gray;
-    border-radius: 0.5rem;
+    border-radius: 1.5rem;
     padding: 0.25rem;
+    outline: transparent;
   }
 
   &-button {
@@ -48,7 +50,7 @@
     background-color: $werhouse-green;
     font-size: 1.2rem;
     border: 0.05rem solid $werhouse-green;
-    border-radius: 0.5rem;
+    border-radius: 1.5rem;
     padding: 0.5rem;
 
     &:hover {

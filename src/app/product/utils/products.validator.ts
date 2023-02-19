@@ -35,7 +35,8 @@ export class ProductsValidator {
             products.some(
               (product: Product) =>
                 product.floor === group.get('productFloor').value &&
-                product.section === group.get('productSection').value
+                product.section === group.get('productSection').value &&
+                product.id !== group.get('productId').value
             )
               ? { locationTaken: true }
               : null
