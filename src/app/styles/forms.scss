@@ -8,7 +8,7 @@
   margin: 1rem;
 
   &-title {
-    color: $werhouse-black;
+    color: $warehouse-black;
     font-size: 1.3rem;
   }
 
@@ -21,35 +21,34 @@
 
   &-label {
     font-size: 1.1rem;
-    color: $werhouse-gray;
+    color: $warehouse-gray;
     padding: 0.25rem;
     max-width: 20rem;
   }
 
   &-input {
-    color: $werhouse-gray;
+    color: $warehouse-gray;
     font-size: 1.1rem;
-    border: 0.05rem solid $werhouse-gray;
+    border: 0.05rem solid $warehouse-gray;
     border-radius: 1.5rem;
-    padding: 0.25rem;
-    max-width: 20rem;
+    padding: 0.5rem;
     outline: transparent;
   }
 
   &-select {
-    color: $werhouse-gray;
+    color: $warehouse-gray;
     font-size: 1.1rem;
-    border: 0.05rem solid $werhouse-gray;
+    border: 0.05rem solid $warehouse-gray;
     border-radius: 1.5rem;
-    padding: 0.25rem;
+    padding: 0.5rem;
     outline: transparent;
   }
 
   &-button {
-    color: $werhouse-white;
-    background-color: $werhouse-green;
+    color: $warehouse-white;
+    background-color: $warehouse-green;
     font-size: 1.2rem;
-    border: 0.05rem solid $werhouse-green;
+    border: 0.05rem solid $warehouse-green;
     border-radius: 1.5rem;
     padding: 0.5rem;
 
@@ -58,8 +57,8 @@
     }
 
     &:disabled {
-      background-color: $werhouse-gray;
-      border: 0.05rem solid $werhouse-gray;
+      background-color: $warehouse-gray;
+      border: 0.05rem solid $warehouse-gray;
 
       &:hover {
         cursor: default;
@@ -74,7 +73,7 @@
   }
 
   .is-invalid {
-    border: 0.1rem solid $werhouse-red;
+    border: 0.1rem solid $warehouse-red;
   }
 
   .invalid {
@@ -82,7 +81,7 @@
 
     &-feedback {
       font-size: 1.1rem;
-      color: $werhouse-red;
+      color: $warehouse-red;
     }
   }
 }

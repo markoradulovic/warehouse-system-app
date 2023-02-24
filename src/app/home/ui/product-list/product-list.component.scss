@@ -1,6 +1,6 @@
 @import "../../../shared/ui/colors.scss";
 
-.werhouse-product {
+.warehouse-product {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,7 @@
   padding: 0.5rem;
 
   .product-title {
-    color: $werhouse-black;
+    color: $warehouse-black;
     font-size: 1.3rem;
   }
 }

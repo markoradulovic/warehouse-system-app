@@ -1,12 +1,18 @@
-<header class="werhouse-header">
-  <a class="werhouse-link" routerLink="/home">Home</a>
-  <a class="werhouse-link" routerLink="/product">New Product</a>
+<header class="warehouse-header">
+  <ul class="warehouse-header-list">
+    <li><a class="warehouse-header-list-link" routerLink="/home">Home</a></li>
+    <li>
+      <a class="warehouse-header-list-link" routerLink="/product"
+        >New Product</a
+      >
+    </li>
+  </ul>
 </header>
 
-<main class="werhouse-main">
+<main class="warehouse-main">
   <router-outlet></router-outlet>
 </main>
 
-<footer class="werhouse-footer">
-  <span class="copy">© 2023 Marko Radulovic</span>
+<footer class="warehouse-footer">
+  <span class="warehouse-footer-copy">© 2023 Marko Radulovic</span>
 </footer>

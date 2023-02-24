@@ -1,6 +1,6 @@
 import { AbstractControl, AsyncValidatorFn } from '@angular/forms';
 import { map, Observable } from 'rxjs';
-import { ProductService } from 'src/app/shared/data-access/product.service';
+import { ProductService } from 'src/app/product/data-access/product.service';
 import { Product } from 'src/app/shared/interfaces/product';
 
 export class ProductsValidator {

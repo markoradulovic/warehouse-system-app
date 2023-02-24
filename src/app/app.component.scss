@@ -1,28 +1,45 @@
 @import "./shared/ui/colors.scss";
 @import "./shared/ui/links.scss";
 
-.werhouse {
+.warehouse {
   &-header {
-    background-color: $werhouse-white;
-    border-bottom: 0.1rem solid $werhouse-gray;
+    background-color: $warehouse-white;
+    border-bottom: 0.1rem solid $warehouse-gray;
     padding: 1.5rem;
-    display: flex;
-    gap: 1rem;
+
+    &-list {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+
+      &-link {
+        font-size: 1.3rem;
+        text-decoration: none;
+        color: $warehouse-red;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &:visited {
+          color: $warehouse-red;
+        }
+      }
+    }
   }
 
-  &-title {
-    font-size: 2rem;
-    color: $werhouse-red;
-    margin-right: 0.5rem;
+  &-main {
+    min-height: 100vh;
   }
 
   &-footer {
-    background-color: $werhouse-red;
+    background-color: $warehouse-red;
     padding: 1.5rem;
     display: flex;
     justify-content: center;
-    .copy {
-      color: $werhouse-white;
+
+    &-copy {
+      color: $warehouse-white;
       font-size: 1.5rem;
     }
   }

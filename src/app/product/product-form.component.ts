@@ -8,8 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
-import { ProductService } from '../shared/data-access/product.service';
+import { min, Subject, takeUntil } from 'rxjs';
+import { ProductService } from './data-access/product.service';
 import { Product } from '../shared/interfaces/product';
 import { ProductsValidator } from './utils/products.validator';
 
@@ -80,7 +80,11 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         ],
         productQuantity: [
           null,
-          Validators.compose([Validators.required, Validators.max(100)]),
+          Validators.compose([
+            Validators.required,
+            Validators.min(1),
+            Validators.max(100),
+          ]),
         ],
         productFloor: [
           null,
@@ -131,27 +135,27 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
 
   public onSave(): void {
-    const product: Product = {
-      id: this.id.value ? this.id.value : Math.floor(Math.random() * 100),
-      code: this.code.value,
-      quantity: this.quantity.value,
-      floor: this.floor.value,
-      section: this.section.value,
-    };
+    const product: Product = this.productForm.value;
 
     if (this.isNewProduct) {
-      this.productService
-        .createProduct(product)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(() => this.router.navigate(['/home']));
+      this.createProduct(product);
+    } else {
+      this.updateProduct(product);
     }
+  }
 
-    if (!this.isNewProduct) {
-      this.productService
-        .updateProduct(product)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(() => this.router.navigate(['/home']));
-    }
+  private createProduct(product: Product): void {
+    this.productService
+      .createProduct(product)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => this.router.navigate(['/home']));
+  }
+
+  private updateProduct(product: Product): void {
+    this.productService
+      .updateProduct(product)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => this.router.navigate(['/home']));
   }
 
   public onDelete(): void {

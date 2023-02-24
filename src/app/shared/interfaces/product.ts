@@ -6,8 +6,8 @@ export interface Product {
   section: number;
 }
 
-export interface Filters {
-  productCode?: string;
-  productFloor?: number;
-  productSection?: number;
+export interface ProductFilters {
+  code?: string;
+  floor?: number;
+  section?: number;
 }

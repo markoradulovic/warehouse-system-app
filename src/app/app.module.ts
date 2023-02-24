@@ -5,7 +5,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductDataService } from './shared/data-access/product-data.service';
+import { ProductDataService } from './product/data-access/product-data.service';
 
 @NgModule({
   declarations: [AppComponent],

@@ -56,6 +56,10 @@
         Product quantity is required.
       </span>
 
+      <span class="invalid-feedback" *ngIf="quantity.hasError('min')">
+        Minimum quantity is 1.
+      </span>
+
       <span class="invalid-feedback" *ngIf="quantity.hasError('max')">
         Maximum quantity is 100.
       </span>

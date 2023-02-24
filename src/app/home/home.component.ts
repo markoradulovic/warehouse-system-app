@@ -8,8 +8,8 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
-import { ProductService } from '../shared/data-access/product.service';
-import { Filters, Product } from '../shared/interfaces/product';
+import { ProductService } from '../product/data-access/product.service';
+import { ProductFilters, Product } from '../shared/interfaces/product';
 import { ProductListComponent } from './ui/product-list/product-list.component';
 
 @Component({
@@ -55,30 +55,31 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  private getProducts(code?: string, floor?: number, section?: number): void {
+  private getProducts(filters?: ProductFilters): void {
     this.productService
       .getProducts()
       .pipe(takeUntil(this.destroy$))
       .subscribe((products: Product[]) => {
         this.products = [...products];
 
-        if (code) {
+        if (filters.code) {
           const productFilteredByCode = this.products.filter(
-            (product: Product) => product.code.includes(code.toUpperCase())
+            (product: Product) =>
+              product.code.includes(filters.code.toUpperCase())
           );
           this.products = [...productFilteredByCode];
         }
 
-        if (floor) {
+        if (filters.floor) {
           const productFilteredByFloor = this.products.filter(
-            (product: Product) => product.floor === floor
+            (product: Product) => product.floor === +filters.floor
           );
           this.products = [...productFilteredByFloor];
         }
 
-        if (section) {
+        if (filters.section) {
           const productFilteredBySection = this.products.filter(
-            (product: Product) => product.section === section
+            (product: Product) => product.section === +filters.section
           );
           this.products = [...productFilteredBySection];
         }
@@ -96,19 +97,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   private filterProducts(): void {
     this.filtersForm.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged(), takeUntil(this.destroy$))
-      .subscribe((filters: Filters) => {
-        this.getProducts(
-          filters?.productCode,
-          +filters?.productFloor,
-          +filters?.productSection
-        );
+      .subscribe((filters: ProductFilters) => {
+        this.getProducts(filters);
       });
   }
 
   public onClear(): void {
-    this.code.setValue('');
-    this.floor.setValue('');
-    this.section.setValue('');
+    this.filtersForm.reset();
 
     this.getProducts();
   }
