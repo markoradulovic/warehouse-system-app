@@ -1,5 +1,11 @@
 import { NgFor } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/product';
 import { ProductItemComponent } from '../product-item/product-item.component';
 
@@ -13,6 +19,12 @@ import { ProductItemComponent } from '../product-item/product-item.component';
 })
 export class ProductListComponent {
   @Input() public products: Product[] = [];
+
+  @Output() onDeleteEvent = new EventEmitter<number>();
+
+  public onDelete($event: number): void {
+    this.onDeleteEvent.emit($event);
+  }
 
   public productTrackBy(index: number, item: Product): number {
     return item.id;

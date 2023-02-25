@@ -10,7 +10,21 @@
     {{ product.section }}</span
   >
 
-  <a class="warehouse-link" [routerLink]="['/product', product.id]"
-    >Edit Product</a
-  >
+  <div class="card-footer">
+    <button
+      class="warehouse-button"
+      type="button"
+      [routerLink]="['/product', product.id]"
+    >
+      Edit Product
+    </button>
+
+    <button
+      class="warehouse-button warning"
+      type="button"
+      (click)="onDelete(product.id)"
+    >
+      Delete Product
+    </button>
+  </div>
 </div>

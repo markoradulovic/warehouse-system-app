@@ -1,15 +1,18 @@
-@import "../../../shared/ui/colors.scss";
+@import "../../../styles/colors.scss";
 
 .warehouse-product {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 0.5rem;
+  gap: 2rem;
+  padding: 1rem;
+}
 
-  .product-title {
-    color: $warehouse-black;
-    font-size: 1.3rem;
-  }
+.product-title {
+  color: $warehouse-black;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
 }

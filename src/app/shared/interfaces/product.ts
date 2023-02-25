@@ -7,7 +7,7 @@ export interface Product {
 }
 
 export interface ProductFilters {
-  code?: string;
-  floor?: number;
-  section?: number;
+  code: string;
+  floor: number;
+  section: number;
 }

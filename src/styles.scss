@@ -1,3 +1,5 @@
+@import "./app/styles/colors.scss";
+
 html,
 body {
   height: 100%;
@@ -5,6 +7,41 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, Ariel, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 10px;
+}
+
+.warehouse-button {
+  color: $warehouse-black;
+  background-color: $warehouse-green;
+  font-size: 1rem;
+  border: 0.05rem solid $warehouse-green;
+  border-radius: 1.5rem;
+  padding: 0.5rem;
+  max-width: fit-content;
+
+  &:hover {
+    color: $warehouse-white;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: $warehouse-silver;
+    border: 0.05rem solid $warehouse-silver;
+    color: $warehouse-white;
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.warning {
+  color: $warehouse-white;
+  background-color: $warehouse-red;
+  border: 0.05rem solid $warehouse-red;
+
+  &:hover {
+    color: $warehouse-black;
+  }
 }

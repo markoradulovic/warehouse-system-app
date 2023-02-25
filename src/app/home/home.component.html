@@ -1,21 +1,20 @@
 <div class="warehouse-home">
   <form [formGroup]="filtersForm" autocomplete="off" class="form">
-    <span class="form-title">Filter products</span>
-
+    <span class="form-title">Filters</span>
     <div class="form-row">
       <label for="code" class="form-label">Code</label
       ><input
         type="search"
         id="code"
-        placeholder="Search products by code"
-        formControlName="productCode"
+        placeholder="Search by code"
+        formControlName="code"
         class="form-input"
       />
     </div>
 
     <div class="form-row">
       <label for="floor" class="form-label">Floor</label>
-      <select id="floor" formControlName="productFloor" class="form-select">
+      <select id="floor" formControlName="floor" class="form-select">
         <option class="form-option" value="" selected>All Floors</option>
         <option
           class="form-option"
@@ -29,7 +28,7 @@
 
     <div class="form-row">
       <label for="section" class="form-label">Section</label>
-      <select id="section" formControlName="productSection" class="form-select">
+      <select id="section" formControlName="section" class="form-select">
         <option class="form-option" value="" selected>All Sections</option>
         <option
           class="form-option"
@@ -41,12 +40,15 @@
       </select>
     </div>
 
-    <button class="form-button" type="button" (click)="onClear()">
-      Clear All Filters
+    <button class="warehouse-button warning" type="button" (click)="onClear()">
+      Clear Filters
     </button>
   </form>
 
   <div class="warehouse-products">
-    <app-product-list [products]="products"></app-product-list>
+    <app-product-list
+      [products]="products"
+      (onDeleteEvent)="onDelete($event)"
+    ></app-product-list>
   </div>
 </div>

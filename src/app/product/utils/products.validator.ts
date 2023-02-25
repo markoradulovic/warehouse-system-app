@@ -34,9 +34,9 @@ export class ProductsValidator {
           map((products: Product[]) =>
             products.some(
               (product: Product) =>
-                product.floor === group.get('productFloor').value &&
-                product.section === group.get('productSection').value &&
-                product.id !== group.get('productId').value
+                product.floor === group.get('floor').value &&
+                product.section === group.get('section').value &&
+                product.id !== group.get('id').value
             )
               ? { locationTaken: true }
               : null

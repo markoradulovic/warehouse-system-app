@@ -28,23 +28,23 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   public productForm: FormGroup;
 
   public get id(): FormControl {
-    return <FormControl>this.productForm?.get('productId');
+    return <FormControl>this.productForm?.get('id');
   }
 
   public get code(): FormControl {
-    return <FormControl>this.productForm?.get('productCode');
+    return <FormControl>this.productForm?.get('code');
   }
 
   public get quantity(): FormControl {
-    return <FormControl>this.productForm?.get('productQuantity');
+    return <FormControl>this.productForm?.get('quantity');
   }
 
   public get floor(): FormControl {
-    return <FormControl>this.productForm?.get('productFloor');
+    return <FormControl>this.productForm?.get('floor');
   }
 
   public get section(): FormControl {
-    return <FormControl>this.productForm?.get('productSection');
+    return <FormControl>this.productForm?.get('section');
   }
 
   constructor(
@@ -69,8 +69,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   private buildForm(): void {
     this.productForm = this.formBuilder.group(
       {
-        productId: [null],
-        productCode: [
+        id: [null],
+        code: [
           null,
           Validators.compose([
             Validators.required,
@@ -78,7 +78,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
           ]),
           ProductsValidator.uniqueCodeValidator(this.productService),
         ],
-        productQuantity: [
+        quantity: [
           null,
           Validators.compose([
             Validators.required,
@@ -86,7 +86,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
             Validators.max(100),
           ]),
         ],
-        productFloor: [
+        floor: [
           null,
           Validators.compose([
             Validators.required,
@@ -94,7 +94,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
             Validators.max(3),
           ]),
         ],
-        productSection: [
+        section: [
           null,
           Validators.compose([
             Validators.required,
@@ -154,13 +154,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   private updateProduct(product: Product): void {
     this.productService
       .updateProduct(product)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => this.router.navigate(['/home']));
-  }
-
-  public onDelete(): void {
-    this.productService
-      .deleteProduct(this.id.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => this.router.navigate(['/home']));
   }

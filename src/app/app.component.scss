@@ -1,34 +1,39 @@
-@import "./shared/ui/colors.scss";
-@import "./shared/ui/links.scss";
+@import "./styles/colors.scss";
 
 .warehouse {
   &-header {
-    background-color: $warehouse-white;
-    border-bottom: 0.1rem solid $warehouse-gray;
+    background-color: $warehouse-red;
     padding: 1.5rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
 
     &-list {
       display: flex;
       gap: 1rem;
       list-style: none;
+      margin: 0;
+      padding: 0;
 
       &-link {
         font-size: 1.3rem;
         text-decoration: none;
-        color: $warehouse-red;
+        color: $warehouse-white;
 
         &:hover {
+          color: $warehouse-black !important;
           cursor: pointer;
         }
 
         &:visited {
-          color: $warehouse-red;
+          color: $warehouse-white;
         }
       }
     }
   }
 
   &-main {
+    margin-top: 6rem;
     min-height: 100vh;
   }
 
@@ -43,4 +48,19 @@
       font-size: 1.5rem;
     }
   }
+}
+
+.scroll-to-top {
+  outline: $warehouse-green;
+  z-index: 10;
+  background-color: $warehouse-green;
+  color: $warehouse-black;
+  padding: 0.5rem;
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  font-size: 1rem;
+  border: 0.1rem solid $warehouse-green;
+  border-radius: 1rem;
+  cursor: pointer;
 }

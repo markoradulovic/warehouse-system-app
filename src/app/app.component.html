@@ -16,3 +16,12 @@
 <footer class="warehouse-footer">
   <span class="warehouse-footer-copy">© 2023 Marko Radulovic</span>
 </footer>
+
+<button
+  *ngIf="isScrolled"
+  class="scroll-to-top"
+  type="button"
+  (click)="scrollToTop()"
+>
+  Top
+</button>

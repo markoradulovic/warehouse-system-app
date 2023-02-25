@@ -5,71 +5,50 @@
   flex-direction: column;
   gap: 1.5rem;
   justify-content: flex-start;
-  margin: 1rem;
+  padding: 2rem;
+  flex-wrap: wrap;
 
   &-title {
     color: $warehouse-black;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   &-row {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2.5%;
+    flex-direction: row;
+    gap: 2.5rem;
+    align-items: center;
   }
 
   &-label {
-    font-size: 1.1rem;
-    color: $warehouse-gray;
+    font-size: 1rem;
+    color: $warehouse-silver;
     padding: 0.25rem;
-    max-width: 20rem;
+    min-width: 4rem;
   }
 
   &-input {
     color: $warehouse-gray;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border: 0.05rem solid $warehouse-gray;
     border-radius: 1.5rem;
     padding: 0.5rem;
     outline: transparent;
+    min-width: 15rem;
   }
 
   &-select {
     color: $warehouse-gray;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border: 0.05rem solid $warehouse-gray;
     border-radius: 1.5rem;
     padding: 0.5rem;
     outline: transparent;
-  }
-
-  &-button {
-    color: $warehouse-white;
-    background-color: $warehouse-green;
-    font-size: 1.2rem;
-    border: 0.05rem solid $warehouse-green;
-    border-radius: 1.5rem;
-    padding: 0.5rem;
+    min-width: 15rem;
 
     &:hover {
       cursor: pointer;
     }
-
-    &:disabled {
-      background-color: $warehouse-gray;
-      border: 0.05rem solid $warehouse-gray;
-
-      &:hover {
-        cursor: default;
-      }
-    }
-  }
-
-  &-footer {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
   }
 
   .is-invalid {
@@ -77,10 +56,10 @@
   }
 
   .invalid {
-    margin-top: 0.5rem;
+    margin: 0.15rem 0;
 
     &-feedback {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: $warehouse-red;
     }
   }

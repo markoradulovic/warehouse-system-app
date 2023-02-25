@@ -1,23 +1,17 @@
-@import "../shared/ui/forms.scss";
-@import "../shared/ui/links.scss";
+@import "../styles/forms.scss";
+@import "../styles//colors.scss";
 
 .warehouse {
   &-home {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 2rem;
     padding: 0.5rem;
-
-    @media screen and (max-width: 600px) {
-      flex-direction: column;
-    }
   }
+}
 
-  &-products {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 0 1rem;
-  }
+.form {
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }

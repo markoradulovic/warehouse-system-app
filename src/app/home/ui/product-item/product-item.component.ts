@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from 'src/app/shared/interfaces/product';
 
@@ -12,4 +18,10 @@ import { Product } from 'src/app/shared/interfaces/product';
 })
 export class ProductItemComponent {
   @Input() public product: Product;
+
+  @Output() onDeleteEvent = new EventEmitter<number>();
+
+  public onDelete(id: number): void {
+    this.onDeleteEvent.emit(id);
+  }
 }

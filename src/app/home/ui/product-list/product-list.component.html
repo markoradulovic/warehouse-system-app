@@ -1,9 +1,10 @@
-<div class="warehouse-product">
-  <span class="product-title">{{ products.length }} products found</span>
+<span class="product-title">{{ products.length }} products found</span>
 
+<div class="warehouse-product">
   <app-product-item
     *ngFor="let product of products; trackBy: productTrackBy"
     [product]="product"
+    (onDeleteEvent)="onDelete($event)"
   >
   </app-product-item>
 </div>

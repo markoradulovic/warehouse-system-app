@@ -1,1 +1,25 @@
-@import "../shared/ui/forms.scss";
+@import "../styles/forms.scss";
+
+.form {
+  &-row {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  &-label {
+    max-width: 8rem;
+  }
+
+  &-input {
+    max-width: 20rem;
+  }
+
+  &-select {
+    max-width: 20rem;
+  }
+
+  &-footer {
+    align-items: flex-start;
+  }
+}

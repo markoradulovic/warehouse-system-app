@@ -1,22 +1,28 @@
-@import "../../../shared/ui/colors.scss";
-@import "../../../shared/ui/links.scss";
+@import "../../../styles/colors.scss";
 
 .product-card {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  border: 0.1rem solid $warehouse-gray;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  width: 15rem;
+  box-shadow: 0.1rem 0.1rem 0.5rem 0 $warehouse-gray;
+  border-radius: 1rem;
+  padding: 1rem;
+  min-width: 18rem;
 
   .card-row {
-    font-size: $warehouse-black;
+    color: $warehouse-black;
     font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
 
     .card-label {
-      color: $warehouse-green;
+      color: $warehouse-silver;
       font-size: 1.2rem;
     }
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
   }
 }
