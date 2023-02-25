@@ -72,35 +72,24 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         id: [null],
         code: [
           null,
-          Validators.compose([
+          [
             Validators.required,
-            Validators.pattern(/[A-Z]{2,4}\s[0-9]{4,6}/),
-          ]),
+            Validators.pattern(/^[A-Z]{2,4}\s[0-9]{4,6}$/),
+            Validators.maxLength(11),
+          ],
           ProductsValidator.uniqueCodeValidator(this.productService),
         ],
         quantity: [
           null,
-          Validators.compose([
-            Validators.required,
-            Validators.min(1),
-            Validators.max(100),
-          ]),
+          [Validators.required, Validators.min(1), Validators.max(100)],
         ],
         floor: [
           null,
-          Validators.compose([
-            Validators.required,
-            Validators.min(1),
-            Validators.max(3),
-          ]),
+          [Validators.required, Validators.min(1), Validators.max(3)],
         ],
         section: [
           null,
-          Validators.compose([
-            Validators.required,
-            Validators.min(1),
-            Validators.max(3),
-          ]),
+          [Validators.required, Validators.min(1), Validators.max(3)],
         ],
       },
       {
