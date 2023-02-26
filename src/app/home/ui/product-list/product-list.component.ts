@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,7 +12,7 @@ import { ProductItemComponent } from '../product-item/product-item.component';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [ProductItemComponent, NgFor],
+  imports: [ProductItemComponent, NgFor, NgIf],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

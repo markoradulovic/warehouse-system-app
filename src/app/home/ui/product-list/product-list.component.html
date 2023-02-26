@@ -5,6 +5,10 @@
     (onDeleteEvent)="onDelete($event)"
   >
   </app-product-item>
+
+  <span *ngIf="!products.length" class="no-products"
+    >There are no available products.</span
+  >
 </div>
 
 <span class="product-text">{{ products.length }} products found</span>
