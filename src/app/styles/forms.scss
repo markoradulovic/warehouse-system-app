@@ -57,10 +57,16 @@
 
   .invalid {
     margin: 0.15rem 0;
+    max-width: 15rem;
+    visibility: hidden;
 
     &-feedback {
-      font-size: 1rem;
+      font-size: 0.8rem;
       color: $warehouse-red;
     }
+  }
+
+  .visible {
+    visibility: visible;
   }
 }

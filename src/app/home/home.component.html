@@ -15,7 +15,7 @@
     <div class="form-row">
       <label for="floor" class="form-label">Floor</label>
       <select id="floor" formControlName="floor" class="form-select">
-        <option class="form-option" value="" selected>All Floors</option>
+        <option class="form-option" [value]="null" selected>All Floors</option>
         <option
           class="form-option"
           *ngFor="let option of dropdownOprions"
@@ -29,7 +29,9 @@
     <div class="form-row">
       <label for="section" class="form-label">Section</label>
       <select id="section" formControlName="section" class="form-select">
-        <option class="form-option" value="" selected>All Sections</option>
+        <option class="form-option" [value]="null" selected>
+          All Sections
+        </option>
         <option
           class="form-option"
           *ngFor="let option of dropdownOprions"

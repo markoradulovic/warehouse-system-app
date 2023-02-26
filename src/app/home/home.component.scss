@@ -12,6 +12,12 @@
 
 .form {
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  box-shadow: 0.1rem 0.1rem 0.5rem 0 #333;
+  border-radius: 1rem;
+
+  &-row {
+    gap: 1rem;
+  }
 }

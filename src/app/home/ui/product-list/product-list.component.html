@@ -1,5 +1,3 @@
-<span class="product-title">{{ products.length }} products found</span>
-
 <div class="warehouse-product">
   <app-product-item
     *ngFor="let product of products; trackBy: productTrackBy"
@@ -8,3 +6,5 @@
   >
   </app-product-item>
 </div>
+
+<span class="product-text">{{ products.length }} products found</span>

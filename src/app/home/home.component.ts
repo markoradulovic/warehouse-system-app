@@ -6,11 +6,12 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { ProductService } from '../product/data-access/product.service';
-import { ProductFilters, Product } from '../shared/interfaces/product';
+import { Product, ProductFilters } from '../shared/interfaces/product';
 import { ProductListComponent } from './ui/product-list/product-list.component';
+import { DROPDOWN_OPTIONS } from './utils/constants';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   public products: Product[] = [];
-  public dropdownOprions = [1, 2, 3];
+  public dropdownOprions = [...DROPDOWN_OPTIONS];
 
   public filtersForm: FormGroup;
 
@@ -41,8 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
-    private formBuilder: FormBuilder,
-    private router: Router
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -89,9 +89,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private buildForm(): void {
     this.filtersForm = this.formBuilder.group({
-      code: [''],
-      floor: [''],
-      section: [''],
+      code: [null],
+      floor: [null],
+      section: [null],
     });
   }
 

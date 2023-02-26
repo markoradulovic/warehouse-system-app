@@ -22,11 +22,11 @@ export class ProductListComponent {
 
   @Output() onDeleteEvent = new EventEmitter<number>();
 
-  public onDelete($event: number): void {
-    this.onDeleteEvent.emit($event);
-  }
-
   public productTrackBy(index: number, item: Product): number {
     return item.id;
+  }
+
+  public onDelete($event: number): void {
+    this.onDeleteEvent.emit($event);
   }
 }

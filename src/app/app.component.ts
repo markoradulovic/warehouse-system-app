@@ -1,4 +1,3 @@
-import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   public isScrolled = false;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     window.addEventListener('scroll', () => {
-      this.isScrolled = window.pageYOffset !== 0;
+      this.isScrolled = window.scrollY !== 0;
     });
   }
 

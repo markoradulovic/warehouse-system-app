@@ -1,158 +1,174 @@
-<form [formGroup]="productForm" autocomplete="off" class="form">
-  <span *ngIf="isNewProduct; else editProduct" class="form-title"
-    >Add New Product</span
-  >
-  <ng-template #editProduct
-    ><span class="form-title">Edit Product</span></ng-template
-  >
+<div class="form-wrapper">
+  <form [formGroup]="productForm" autocomplete="off" class="form">
+    <span *ngIf="isNewProduct; else editProduct" class="form-title"
+      >Add New Product</span
+    >
+    <ng-template #editProduct
+      ><span class="form-title">Edit Product</span></ng-template
+    >
 
-  <div class="form-row">
-    <label for="code" class="form-label">Product Code *</label>
-    <input
-      type="text"
-      id="code"
-      placeholder="Unique Product Code"
-      formControlName="code"
-      class="form-input"
-      [ngClass]="{
-        'is-invalid': (code.touched || code.dirty) && !code.valid
-      }"
-    />
+    <div class="form-row">
+      <label for="code" class="form-label">Product Code *</label>
+      <input
+        type="text"
+        id="code"
+        placeholder="Unique Product Code"
+        formControlName="code"
+        class="form-input"
+        [ngClass]="{
+          'is-invalid': (code.touched || code.dirty) && !code.valid
+        }"
+      />
 
-    <span class="invalid" *ngIf="(code.touched || code.dirty) && !code.valid">
-      <span class="invalid-feedback" *ngIf="code.hasError('required')">
-        Unique product code is required.
-      </span>
-
-      <span class="invalid-feedback" *ngIf="code.hasError('pattern')">
-        Code format is 2-4 uppercase letters, empty space and 4-6 digits.
-      </span>
-
-      <span class="invalid-feedback" *ngIf="code.hasError('codeExists')">
-        Code must be unique.</span
+      <span
+        class="invalid"
+        [ngClass]="{
+          visible: (code.touched || code.dirty) && !code.valid
+        }"
       >
-    </span>
-  </div>
+        <span class="invalid-feedback" *ngIf="code.hasError('required')">
+          Product code is required.
+        </span>
 
-  <div class="form-row">
-    <label for="quantity" class="form-label">Quantity *</label>
-    <input
-      type="number"
-      min="1"
-      id="quantity"
-      placeholder="Product Quantity"
-      formControlName="quantity"
-      class="form-input"
-      [ngClass]="{
-        'is-invalid': (quantity.touched || quantity.dirty) && !quantity.valid
-      }"
-    />
+        <span class="invalid-feedback" *ngIf="code.hasError('pattern')">
+          Code format is 2-4 uppercase letters, empty space and 4-6 digits.
+        </span>
+
+        <span class="invalid-feedback" *ngIf="code.hasError('codeExists')">
+          Code must be unique.</span
+        >
+      </span>
+    </div>
+
+    <div class="form-row">
+      <label for="quantity" class="form-label">Quantity *</label>
+      <input
+        type="number"
+        min="1"
+        id="quantity"
+        placeholder="Product Quantity"
+        formControlName="quantity"
+        class="form-input"
+        [ngClass]="{
+          'is-invalid': (quantity.touched || quantity.dirty) && !quantity.valid
+        }"
+      />
+
+      <span
+        class="invalid"
+        [ngClass]="{
+          visible: (quantity.touched || quantity.dirty) && !quantity.valid
+        }"
+      >
+        <span class="invalid-feedback" *ngIf="quantity.hasError('required')">
+          Product quantity is required.
+        </span>
+
+        <span class="invalid-feedback" *ngIf="quantity.hasError('min')">
+          Minimum quantity is 1.
+        </span>
+
+        <span class="invalid-feedback" *ngIf="quantity.hasError('max')">
+          Maximum quantity is 100.
+        </span>
+      </span>
+    </div>
+
+    <div class="form-row">
+      <label for="floor" class="form-label">Floor *</label>
+      <input
+        type="number"
+        min="1"
+        id="floor"
+        placeholder="Floor 1-3"
+        formControlName="floor"
+        class="form-input"
+        [ngClass]="{
+          'is-invalid': (floor.touched || floor.dirty) && !floor.valid
+        }"
+      />
+
+      <span
+        class="invalid"
+        [ngClass]="{
+          visible: (floor.touched || floor.dirty) && !floor.valid
+        }"
+      >
+        <span class="invalid-feedback" *ngIf="floor.hasError('required')">
+          Floor is required.
+        </span>
+
+        <span class="invalid-feedback" *ngIf="floor.hasError('min')">
+          Floor range is 1-3.
+        </span>
+
+        <span class="invalid-feedback" *ngIf="floor.hasError('max')">
+          Floor range is 1-3.</span
+        >
+      </span>
+    </div>
+
+    <div class="form-row">
+      <label for="section" class="form-label">Section *</label>
+      <input
+        type="number"
+        id="section"
+        min="1"
+        placeholder="Section 1-3"
+        formControlName="section"
+        class="form-input"
+        [ngClass]="{
+          'is-invalid': (section.touched || section.dirty) && !section.valid
+        }"
+      />
+
+      <span
+        class="invalid"
+        [ngClass]="{
+          visible: (section.touched || section.dirty) && !section.valid
+        }"
+      >
+        <span class="invalid-feedback" *ngIf="section.hasError('required')">
+          Section is required.
+        </span>
+
+        <span class="invalid-feedback" *ngIf="section.hasError('min')">
+          Section range is 1-3.
+        </span>
+
+        <span class="invalid-feedback" *ngIf="section.hasError('max')">
+          Section range is 1-3.</span
+        >
+      </span>
+    </div>
 
     <span
       class="invalid"
-      *ngIf="(quantity.touched || quantity.dirty) && !quantity.valid"
-    >
-      <span class="invalid-feedback" *ngIf="quantity.hasError('required')">
-        Product quantity is required.
-      </span>
-
-      <span class="invalid-feedback" *ngIf="quantity.hasError('min')">
-        Minimum quantity is 1.
-      </span>
-
-      <span class="invalid-feedback" *ngIf="quantity.hasError('max')">
-        Maximum quantity is 100.
-      </span>
-    </span>
-  </div>
-
-  <div class="form-row">
-    <label for="floor" class="form-label">Floor *</label>
-    <input
-      type="number"
-      min="1"
-      id="floor"
-      placeholder="Floor 1-3"
-      formControlName="floor"
-      class="form-input"
       [ngClass]="{
-        'is-invalid': (floor.touched || floor.dirty) && !floor.valid
+        visible:
+          (productForm.touched || productForm.dirty) && !productForm.valid
       }"
-    />
-
-    <span
-      class="invalid"
-      *ngIf="(floor.touched || floor.dirty) && !floor.valid"
     >
-      <span class="invalid-feedback" *ngIf="floor.hasError('required')">
-        Floor is required.
-      </span>
-
-      <span class="invalid-feedback" *ngIf="floor.hasError('min')">
-        Floor range is 1-3.
-      </span>
-
-      <span class="invalid-feedback" *ngIf="floor.hasError('max')">
-        Floor range is 1-3.</span
+      <span
+        class="invalid-feedback"
+        *ngIf="productForm.hasError('locationTaken')"
       >
+        This location is already taken.
+      </span>
     </span>
-  </div>
 
-  <div class="form-row">
-    <label for="section" class="form-label">Section *</label>
-    <input
-      type="number"
-      id="section"
-      min="1"
-      placeholder="Section 1-3"
-      formControlName="section"
-      class="form-input"
-      [ngClass]="{
-        'is-invalid': (section.touched || section.dirty) && !section.valid
-      }"
-    />
-
-    <span
-      class="invalid"
-      *ngIf="(section.touched || section.dirty) && !section.valid"
-    >
-      <span class="invalid-feedback" *ngIf="section.hasError('required')">
-        Section is required.
-      </span>
-
-      <span class="invalid-feedback" *ngIf="section.hasError('min')">
-        Section range is 1-3.
-      </span>
-
-      <span class="invalid-feedback" *ngIf="section.hasError('max')">
-        Section range is 1-3.</span
+    <div class="form-footer">
+      <button
+        class="warehouse-button"
+        [disabled]="productForm.invalid"
+        type="button"
+        [ngClass]="{
+          'is-disabled': productForm.invalid
+        }"
+        (click)="onSave()"
       >
-    </span>
-  </div>
-
-  <span
-    class="invalid"
-    *ngIf="(productForm.touched || productForm.dirty) && !productForm.valid"
-  >
-    <span
-      class="invalid-feedback"
-      *ngIf="productForm.hasError('locationTaken')"
-    >
-      This location is already taken.
-    </span>
-  </span>
-
-  <div>
-    <button
-      class="warehouse-button"
-      [disabled]="productForm.invalid"
-      type="button"
-      [ngClass]="{
-        'is-disabled': productForm.invalid
-      }"
-      (click)="onSave()"
-    >
-      Save Product
-    </button>
-  </div>
-</form>
+        Save Product
+      </button>
+    </div>
+  </form>
+</div>

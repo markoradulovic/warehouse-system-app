@@ -8,9 +8,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { min, Subject, takeUntil } from 'rxjs';
-import { ProductService } from './data-access/product.service';
+import { Subject, takeUntil } from 'rxjs';
 import { Product } from '../shared/interfaces/product';
+import { ProductService } from './data-access/product.service';
+import { CODE_PATTERN } from './utils/constants';
 import { ProductsValidator } from './utils/products.validator';
 
 @Component({
@@ -56,7 +57,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.buildForm();
-    this.getRouteData();
+    this.checkIsNew();
 
     if (!this.isNewProduct) this.populateForm();
   }
@@ -72,11 +73,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
         id: [null],
         code: [
           null,
-          [
-            Validators.required,
-            Validators.pattern(/^[A-Z]{2,4}\s[0-9]{4,6}$/),
-            Validators.maxLength(11),
-          ],
+          [Validators.required, Validators.pattern(CODE_PATTERN)],
           ProductsValidator.uniqueCodeValidator(this.productService),
         ],
         quantity: [
@@ -102,10 +99,10 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
 
   private populateForm(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('id');
 
     this.productService
-      .getProduct(+id)
+      .getProduct(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((product: Product) => {
         this.id.setValue(product?.id);
@@ -117,20 +114,12 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       });
   }
 
-  private getRouteData(): void {
+  private checkIsNew(): void {
     this.route.data
       .pipe(takeUntil(this.destroy$))
-      .subscribe((data: any) => (this.isNewProduct = data.isNew));
-  }
-
-  public onSave(): void {
-    const product: Product = this.productForm.value;
-
-    if (this.isNewProduct) {
-      this.createProduct(product);
-    } else {
-      this.updateProduct(product);
-    }
+      .subscribe(
+        (data: any) => (this.isNewProduct = data?.isNew ? true : false)
+      );
   }
 
   private createProduct(product: Product): void {
@@ -145,5 +134,15 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       .updateProduct(product)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => this.router.navigate(['/home']));
+  }
+
+  public onSave(): void {
+    const product: Product = this.productForm.getRawValue();
+
+    if (this.isNewProduct) {
+      this.createProduct(product);
+    } else {
+      this.updateProduct(product);
+    }
   }
 }
