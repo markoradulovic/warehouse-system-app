@@ -110,7 +110,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public onDelete($event: number): void {
-    this.productService.deleteProduct($event).subscribe();
+    this.productService
+      .deleteProduct($event)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
 
     this.getProducts();
   }
